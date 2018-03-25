@@ -1,8 +1,9 @@
 #!/usr/bin/python3.4
 import re
 
-filename = "user-ct-test-collection-0"
-out = open("query_testset.txt","w")
+path = "data/raw/"
+filename = path + "user-ct-test-collection-0"
+out = open("data/aol_queries.txt","w")
 substrings = ["http", "www.", ".com", ".net", ".org", ".edu"]
 queries = []
 
@@ -23,11 +24,12 @@ for i in range(1,10):
                 continue
         if flag == 0:
             query = re.sub("[^a-zA-Z0-9 ]", '', query)
+            query = " ".join(query.split())
             if (len(query) != 0):
                 queries.append(query+"\n")
       
 #do the same for the tenth file
-files = open("user-ct-test-collection-10.txt","r")
+files = open(path + "user-ct-test-collection-10.txt","r")
 lines = files.readlines()
 files.close()
 
@@ -42,6 +44,7 @@ for j in range(0,len(lines)):
             continue
     if flag == 0:
         query = re.sub("[^a-zA-Z0-9 ]", '', query)
+        query = " ".join(query.split())
         if (len(query) != 0):
             queries.append(query+"\n")
  
